@@ -1,3 +1,5 @@
+var listaDeNumerosSorteados = [];
+var numeroLimite = 10;
 var numeroSecreto = gerarNumeroAleatorio();
 var tentativas = 1;
 
@@ -37,7 +39,19 @@ function verificarChute() {
 }
 
 function gerarNumeroAleatorio() {
-  return parseInt(Math.random() * 10 + 1);
+  var NumeroEscolhido = parseInt(Math.random() * numeroLimite + 1);
+  var quantidadeDeElementosNaLista = listaDeNumerosSorteados.length;
+
+  if (quantidadeDeElementosNaLista == numeroLimite) {
+    listaDeNumerosSorteados = [];
+  }
+
+  if (listaDeNumerosSorteados.includes(NumeroEscolhido)) {
+    return gerarNumeroAleatorio();
+  } else {
+    listaDeNumerosSorteados.push(NumeroEscolhido);
+    return NumeroEscolhido;
+  }
 }
 
 function limparCampo() {
